@@ -1,22 +1,27 @@
 package com.example.Shortlytics.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Random;
 
+
+
+@Component
 public class ImpleUtility implements  Utility{
     private final HashMap<String, String> urlMap = new HashMap<>();
     private final HashMap<String, String> reverseUrlMap = new HashMap<>();
-    private static final String BASE_URL = "Https://www.whoisujjwal.me/";
+    private static final String BASE_URL = "http://localhost:8080/";
     private static final String CHAR_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private final Random random = new Random();
     private static final int SHORT_URL_LENGTH = 6; // Length of short URL
 
     @Override
-    public String shortelURl(String oldURL) {
+    public String shortenURl(String oldURL) {
         if (reverseUrlMap.containsKey(oldURL)) {
             return BASE_URL + reverseUrlMap.get(oldURL);
         }

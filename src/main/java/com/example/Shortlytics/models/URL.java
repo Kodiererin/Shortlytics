@@ -10,10 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class URL {
     @Id
     private String Id;
-
-    public URL() {
-    }
-
     @Indexed(unique = true)
     private String initialUrl;      // Old Url
     @Indexed(unique = true)

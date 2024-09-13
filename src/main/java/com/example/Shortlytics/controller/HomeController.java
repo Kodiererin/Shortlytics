@@ -1,7 +1,11 @@
 package com.example.Shortlytics.controller;
 
 
-import com.example.Shortlytics.repository.UrlRepoImplementation;
+import com.example.Shortlytics.models.URL;
+import com.example.Shortlytics.service.UrlService;
+import com.example.Shortlytics.utils.ImpleUtility;
+import com.example.Shortlytics.utils.Utility;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +15,8 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/")
 public class HomeController {
-
+    @Autowired
+    UrlService urlService;
 
     @GetMapping("/")
     public String test(){
@@ -25,23 +30,18 @@ public class HomeController {
 
 
     // Function receives the URL and the function returns the shorten URL to the Use.
+    // Get the new URL and the date-time
+    // Save the url
     @GetMapping("/shortUrl")
-    public ResponseEntity<HashMap<String, String>> shortURL(@RequestParam String oldUrl) {
-        if (oldUrl == null || oldUrl.isBlank() || oldUrl.length() <= 1) {
-            HashMap<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("error", "Empty or Invalid URL");
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        }
-
-        UrlRepoImplementation urlRepoImp = new UrlRepoImplementation();
-        HashMap<String, String> map = urlRepoImp.saveURL(oldUrl);
-
-        if (map != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(map);
-        } else {
-            HashMap<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("error", "Failed to shorten URL");
-            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<URL> shortURL(@RequestParam String oldUrl) {
+        String newUrl = new ImpleUtility().shortenURl(oldUrl);
+        String dateCreated = new ImpleUtility().getCurrentDateTime();
+        URL url = new URL(oldUrl,newUrl,dateCreated);
+        URL saveUrl = urlService.saveUrl(url);
+        if(saveUrl!=null){
+            return ResponseEntity.status(HttpStatus.OK).body(url);
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
 
