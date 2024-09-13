@@ -7,7 +7,6 @@ Shortlytics is a powerful URL shortener built using **Spring Boot** and **MongoD
 - 🗜️ **URL Shortening**: Easily shorten long URLs into short, manageable links.
 - ⚡ **Caching**: Implemented caching for faster access and performance optimization.
 - 🔒 **Custom Algorithms**: Unique URL shortening algorithms for collision-free shortened links.
-- 📊 **Analytics**: Get real-time analytics on shortened URLs, including usage statistics, clicks, and geographical insights.
 - 🏗️ **Built with Spring Boot**: A robust, scalable backend using the Spring ecosystem.
 - 💽 **MongoDB Database**: Efficient storage and retrieval of original and shortened URLs using MongoDB.
 
