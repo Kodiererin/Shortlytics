@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -18,15 +19,28 @@ public class HomeController {
     @Autowired
     UrlService urlService;
 
+
+
     @GetMapping("/")
     public String test(){
         return "The Domain is Working";
     }
 
-    @GetMapping("{test}")
-    public String getTest(@PathVariable("test") String test){
-        return "The URL is Working and the parameter is  "+test;
+    @GetMapping("/{data}")
+    public ResponseEntity<String> getTest(@PathVariable("data") String data) {
+        String url = "http://localhost:8080/" + data;
+        List<URL> getUrl = urlService.findUrl(url);
+
+        if (getUrl.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("URL not found");
+        }
+
+        String initialUrl = getUrl.get(0).getInitialUrl();
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .header("Location", initialUrl)
+                .build();
     }
+
 
 
     // Function receives the URL and the function returns the shorten URL to the Use.
