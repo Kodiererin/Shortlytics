@@ -16,6 +16,7 @@ public class URL {
 
     @Indexed(unique = true)
     private String initialUrl;      // Old Url
+    @Indexed(unique = true)
     private String newUrl;          // New url
     private String urlAdded;        // Date and time when the url was added
 
