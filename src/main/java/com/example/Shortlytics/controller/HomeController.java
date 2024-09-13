@@ -18,9 +18,6 @@ import java.util.List;
 public class HomeController {
     @Autowired
     UrlService urlService;
-
-
-
     @GetMapping("/")
     public String test(){
         return "The Domain is Working";
