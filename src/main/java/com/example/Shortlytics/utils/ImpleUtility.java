@@ -4,17 +4,19 @@ import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Random;
 
 public class ImpleUtility implements  Utility{
-    private HashMap<String, String> urlMap = new HashMap<>();
-    private HashMap<String, String> reverseUrlMap = new HashMap<>();
+    private final HashMap<String, String> urlMap = new HashMap<>();
+    private final HashMap<String, String> reverseUrlMap = new HashMap<>();
     private static final String BASE_URL = "Https://www.whoisujjwal.me/";
     private static final String CHAR_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private Random random = new Random();
+    private final Random random = new Random();
     private static final int SHORT_URL_LENGTH = 6; // Length of short URL
 
     @Override
-    public String shortelURl(String oldUrl) {
+    public String shortelURl(String oldURL) {
         if (reverseUrlMap.containsKey(oldURL)) {
             return BASE_URL + reverseUrlMap.get(oldURL);
         }
@@ -39,9 +41,9 @@ public class ImpleUtility implements  Utility{
     // To Get the Current Date time
     @Override
     public String getCurrentDateTime() {
-        DateTimeFormatter dtf = new DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        return dtf.format(now).toString();
+        return dtf.format(now);
 
     }
 }
