@@ -36,4 +36,19 @@ public class UrlService {
         System.out.println("IS Caching Working");
         return repository.findURLByNewUrlEndingWithIgnoreCase(url);
     }
+
+
+    public List<URL> findUrlByShortKey(String shortKey) {
+        // Extract the full shortened URL format
+        String fullShortUrl = "http://localhost:8080/" + shortKey;
+
+        // Query the database
+        return repository.findByNewUrl(fullShortUrl);
+    }
+
+    public List<URL> findUrlByFullShortUrl(String fullShortUrl) {
+        // Query the database using the full short URL (e.g., http://localhost:8080/xVhMRW)
+        return repository.findByNewUrl(fullShortUrl);  // Assuming 'newUrl' field stores the full URL
+    }
+
 }
