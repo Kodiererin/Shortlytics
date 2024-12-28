@@ -11,4 +11,6 @@ public interface urlRepository extends MongoRepository<URL,String> {
     List<URL> findURLByNewUrlEndingWithIgnoreCase(String newURL);
 
     List<URL> findByInitialUrlContainingIgnoreCase(String oldUrl);
+    List<URL> findURLByInitialUrlContainingIgnoreCase(String oldUrl);
+
 }

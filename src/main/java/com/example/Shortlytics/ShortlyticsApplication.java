@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @EnableCaching
-public class ShortlyticsApplication {
+public class 	ShortlyticsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShortlyticsApplication.class, args);

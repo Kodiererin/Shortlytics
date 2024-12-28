@@ -2,6 +2,7 @@ package com.example.Shortlytics.service;
 
 import com.example.Shortlytics.models.URL;
 import com.example.Shortlytics.repository.urlRepository;
+import com.example.Shortlytics.utils.ImpleUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -24,7 +25,8 @@ public class UrlService {
         // Add the implementation : if the url already exists.
         List<URL> isURlExist = repository.findByInitialUrlContainingIgnoreCase(url.getInitialUrl());
         if(isURlExist.size()>=1){
-            return isURlExist.get(0);
+            repository.delete(isURlExist.get(0));
+            url.setNewUrl(new ImpleUtility().shortenURl(url.getInitialUrl()));
         }
         return repository.save(url);
     }

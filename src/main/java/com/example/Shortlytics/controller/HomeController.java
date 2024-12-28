@@ -59,6 +59,9 @@ public class HomeController {
     @GetMapping("/shortUrl")
     public ResponseEntity<URL> shortURL(@RequestParam String oldUrl) {
         System.out.println(oldUrl);
+
+
+
 //        System.out.println("");
         String newUrl = new ImpleUtility().shortenURl(oldUrl);
         String dateCreated = new ImpleUtility().getCurrentDateTime();
