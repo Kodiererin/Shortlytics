@@ -17,8 +17,8 @@ import java.util.Random;
 public class ImpleUtility implements  Utility{
     private final HashMap<String, String> urlMap = new HashMap<>();
     private final HashMap<String, String> reverseUrlMap = new HashMap<>();
-    private static final String BASE_URL = "http://localhost:8080/";
-    private static final String CHAR_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String BASE_URL = "http://localhost:5173/";
+    private static final String CHAR_SET = "abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private final Random random = new Random();
     private static final int SHORT_URL_LENGTH = 6; // Length of short URL
 
